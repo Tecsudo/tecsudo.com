@@ -81,6 +81,43 @@ export async function POST(request: Request) {
             const response = await mailerSend.email.send(emailParams);
             console.log('Email API response:', response);
             console.log('Contact email sent successfully');
+
+            // // Send thank you email to the sender
+            // const thankYouRecipients = [
+            //     new Recipient(email, name)
+            // ];
+
+            // const thankYouEmailParams = new EmailParams()
+            //     .setFrom(sentFrom)
+            //     .setTo(thankYouRecipients)
+            //     .setSubject(`Thank you for contacting Tecsudo`)
+            //     .setHtml(`
+            //         <h2>Thank You for Contacting Us</h2>
+            //         <p>Dear ${name},</p>
+            //         <p>Thank you for reaching out to Tecsudo. We have received your message and our team will review it promptly.</p>
+            //         <p>We typically respond within 24-48 business hours.</p>
+            //         <p>In the meantime, feel free to explore our website for more information about our services.</p>
+            //         <p>Best regards,</p>
+            //         <p>The Tecsudo Team</p>
+            //     `)
+            //     .setText(`
+            //         Thank You for Contacting Us
+
+            //         Dear ${name},
+
+            //         Thank you for reaching out to Tecsudo. We have received your message and our team will review it promptly.
+
+            //         We typically respond within 24-48 business hours.
+
+            //         In the meantime, feel free to explore our website for more information about our services.
+
+            //         Best regards,
+            //         The Tecsudo Team
+            //     `);
+
+            // await mailerSend.email.send(thankYouEmailParams);
+            // console.log('Thank you email sent successfully');
+
         } catch (emailError) {
             // Log email sending error but don't fail the request
             console.error('Error sending contact email:', emailError);

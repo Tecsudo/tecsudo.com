@@ -21,7 +21,7 @@ export default function Navbar() {
               className="mr-3"
             />
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <span className="text-white font-bold text-2xl">{contactInfo.companyName}</span>
+              <span className="font-heading text-white font-bold text-2xl">{contactInfo.companyName}</span>
               {/* <span className="text-[#00E2D6] font-bold text-2xl">{contactInfo.companyName}</span> */}
             </Link>
           </div>

@@ -1,18 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Varela_Round, Poppins } from "next/font/google";
 import "./globals.css";
 import CookieConsent from './components/CookieConsent';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const varelaRound = Varela_Round({
+  variable: "--font-varela-round",
+  weight: "400",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const poppins = Poppins({
+  variable: "--font-poppins",
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
+  display: "swap",
 });
-
 export const metadata: Metadata = {
   title: 'Tecsudo | Transforming Ideas into Intelligent Solutions',
   description: 'Tecsudo provides custom software development, mobile app development, and business intelligence solutions to help businesses scale and succeed in the digital landscape.',
@@ -21,7 +24,7 @@ export const metadata: Metadata = {
   creator: 'Tecsudo',
   publisher: 'Tecsudo',
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || 
+    process.env.NEXT_PUBLIC_SITE_URL ||
     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://tecsudo.com')
   ),
   formatDetection: {
@@ -87,7 +90,7 @@ export default function RootLayout({
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00E2D6" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={` ${poppins.variable} ${varelaRound.variable} antialiased`}
       >
         {children}
         <CookieConsent />
