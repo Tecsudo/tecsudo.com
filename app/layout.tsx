@@ -101,6 +101,11 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00E2D6" />
+        <script
+          src="https://app.rybbit.io/api/script.js"
+          data-site-id="1715"
+          defer
+        ></script>
       </head>
       <body className={`${varela.variable} antialiased`}>
         {children}

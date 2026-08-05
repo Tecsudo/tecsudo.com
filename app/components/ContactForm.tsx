@@ -145,7 +145,7 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-            Name <span className="text-[#00E2D6]">*</span>
+            Name <span className="text-brand">*</span>
           </label>
           <input
             type="text"
@@ -154,7 +154,7 @@ export default function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            className={`w-full px-4 py-3 bg-[#1a2229] border ${validationErrors.name ? 'border-red-500' : 'border-[#3a4750]'} rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00E2D6] text-white`}
+            className={`w-full px-4 py-3 bg-[#1a2229] border ${validationErrors.name ? 'border-red-500' : 'border-[#3a4750]'} rounded-lg focus:outline-none focus:ring-2 focus:ring-brand text-white`}
             placeholder="Your name"
           />
           {validationErrors.name && (
@@ -164,7 +164,7 @@ export default function ContactForm() {
         
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-            Email <span className="text-[#00E2D6]">*</span>
+            Email <span className="text-brand">*</span>
           </label>
           <input
             type="email"
@@ -173,7 +173,7 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            className={`w-full px-4 py-3 bg-[#1a2229] border ${validationErrors.email ? 'border-red-500' : 'border-[#3a4750]'} rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00E2D6] text-white`}
+            className={`w-full px-4 py-3 bg-[#1a2229] border ${validationErrors.email ? 'border-red-500' : 'border-[#3a4750]'} rounded-lg focus:outline-none focus:ring-2 focus:ring-brand text-white`}
             placeholder="your.email@example.com"
           />
           {validationErrors.email && (
@@ -191,7 +191,7 @@ export default function ContactForm() {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-[#1a2229] border border-[#3a4750] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00E2D6] text-white"
+            className="w-full px-4 py-3 bg-[#1a2229] border border-[#3a4750] rounded-lg focus:outline-none focus:ring-2 focus:ring-brand text-white"
             placeholder="(123) 456-7890"
           />
         </div>
@@ -206,7 +206,7 @@ export default function ContactForm() {
             name="company"
             value={formData.company}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-[#1a2229] border border-[#3a4750] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00E2D6] text-white"
+            className="w-full px-4 py-3 bg-[#1a2229] border border-[#3a4750] rounded-lg focus:outline-none focus:ring-2 focus:ring-brand text-white"
             placeholder="Your company name"
           />
         </div>
@@ -214,7 +214,7 @@ export default function ContactForm() {
       
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
-          Message <span className="text-[#00E2D6]">*</span>
+          Message <span className="text-brand">*</span>
         </label>
         <textarea
           id="message"
@@ -223,7 +223,7 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           rows={5}
-          className={`w-full px-4 py-3 bg-[#1a2229] border ${validationErrors.message ? 'border-red-500' : 'border-[#3a4750]'} rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00E2D6] text-white resize-none`}
+          className={`w-full px-4 py-3 bg-[#1a2229] border ${validationErrors.message ? 'border-red-500' : 'border-[#3a4750]'} rounded-lg focus:outline-none focus:ring-2 focus:ring-brand text-white resize-none`}
           placeholder="Tell us about your project and requirements..."
         ></textarea>
         {validationErrors.message && (
@@ -243,8 +243,8 @@ export default function ContactForm() {
           disabled={formStatus.isSubmitting || formStatus.isSubmitted}
           className={`w-full md:w-auto px-8 py-3 rounded-full font-medium text-center transition-colors ${
             formStatus.isSubmitting || formStatus.isSubmitted
-              ? 'bg-[#00E2D6]/50 text-white cursor-not-allowed'
-              : 'bg-[#00E2D6] text-[#1a2229] hover:bg-[#00E2D6]/90'
+              ? 'bg-brand/50 text-white cursor-not-allowed'
+              : 'bg-brand text-[#1a2229] hover:bg-brand/90'
           }`}
         >
           {formStatus.isSubmitting ? 'Sending...' : formStatus.isSubmitted ? 'Sent!' : 'Send Message'}

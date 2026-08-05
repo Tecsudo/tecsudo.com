@@ -2,7 +2,7 @@
 export const contactInfo = {
     companyName: 'Tecsudo',
     contactEmail: 'contact@tecsudo.com',
-    phone: '+92 345 4567890',
+    phone: '+44 7853 306315',
     address: '',
     address1: '',
     city: 'Islamabad',
@@ -17,7 +17,7 @@ export const contactInfo = {
 
     // Add social media links
     social: {
-        twitter: 'https://twitter.com/tecsudo',
+        // twitter: 'https://twitter.com/tecsudo',
         github: 'https://github.com/tecsudo',
         linkedin: 'https://linkedin.com/company/tecsudo'
     },

@@ -22,11 +22,11 @@ export default function CookieConsent() {
   if (!showBanner) return null;
   
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-[#232B32] p-4 shadow-lg z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-background p-4 shadow-lg z-50">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
         <p className="text-gray-300 mb-4 md:mb-0">
           We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. 
-          <Link href="/cookie-policy" className="text-[#00E2D6] hover:underline ml-1">
+          <Link href="/cookie-policy" className="text-brand hover:underline ml-1">
             Learn more
           </Link>
         </p>

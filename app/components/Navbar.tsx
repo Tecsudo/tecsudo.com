@@ -9,7 +9,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full z-50 bg-[#232B32]/90 backdrop-blur-sm">
+    <nav className="fixed w-full z-50 bg-background/90 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
@@ -24,20 +24,14 @@ export default function Navbar() {
               <span className="text-white font-bold text-2xl">
                 {contactInfo.companyName}
               </span>
-              {/* <span className="text-[#00E2D6] font-bold text-2xl">{contactInfo.companyName}</span> */}
+              {/* <span className="text-brand font-bold text-2xl">{contactInfo.companyName}</span> */}
             </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
             <Link
-              href="#team"
-              className="text-white hover:text-[#00E2D6] transition-colors"
-            >
-              Team
-            </Link>
-            <Link
               href="#services"
-              className="text-white hover:text-[#00E2D6] transition-colors"
+              className="text-white hover:text-brand transition-colors"
             >
               Services
             </Link>
@@ -52,7 +46,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white hover:text-[#00E2D6]"
+              className="text-white hover:text-brand"
             >
               {isMenuOpen ? (
                 <svg
@@ -92,26 +86,11 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-20 inset-x-0 bg-[#232B32] shadow-lg rounded-b-lg">
+        <div className="md:hidden absolute top-20 inset-x-0 bg-background shadow-lg rounded-b-lg">
           <div className="px-4 py-6 space-y-4">
             <Link
               href="#services"
-              className="text-white hover:text-[#00E2D6] transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Services
-            </Link>
-
-            <Link
-              href="#team"
-              className="text-white hover:text-[#00E2D6] transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Team
-            </Link>
-            <Link
-              href="#services"
-              className="text-white hover:text-[#00E2D6] transition-colors"
+              className="text-white hover:text-brand transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Services

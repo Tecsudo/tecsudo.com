@@ -6,7 +6,7 @@ import { services } from "../config/services";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#232B32] text-white">
+    <footer className="bg-background text-white">
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -28,26 +28,10 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href={`${contactInfo.social.twitter}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-[#00E2D6] transition-colors"
-              >
-                {/* Twitter icon */}
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z" />
-                </svg>
-              </a>
-              <a
                 href={`${contactInfo.social.github}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-[#00E2D6] transition-colors"
+                className="text-gray-400 hover:text-brand transition-colors"
               >
                 {/* GitHub icon */}
                 <svg
@@ -67,7 +51,7 @@ export default function Footer() {
                 href={`${contactInfo.social.linkedin}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-[#00E2D6] transition-colors"
+                className="text-gray-400 hover:text-brand transition-colors"
               >
                 {/* LinkedIn icon */}
                 <svg
@@ -92,16 +76,8 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="#team"
-                  className="text-gray-300 hover:text-[#00E2D6] transition-colors"
-                >
-                  Our Team
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="#services"
-                  className="text-gray-300 hover:text-[#00E2D6] transition-colors"
+                  className="text-gray-300 hover:text-brand transition-colors"
                 >
                   Services
                 </Link>
@@ -109,7 +85,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#contact"
-                  className="text-gray-300 hover:text-[#00E2D6] transition-colors"
+                  className="text-gray-300 hover:text-brand transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -125,7 +101,7 @@ export default function Footer() {
                 <li key={index}>
                   <Link
                     href="#services"
-                    className="text-gray-300 hover:text-[#00E2D6] transition-colors"
+                    className="text-gray-300 hover:text-brand transition-colors"
                   >
                     {service.title}
                   </Link>
@@ -141,7 +117,7 @@ export default function Footer() {
               <li className="flex items-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-[#00E2D6] mr-3 mt-0.5"
+                  className="h-5 w-5 text-brand mr-3 mt-0.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -170,7 +146,7 @@ export default function Footer() {
               <li className="flex items-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-[#00E2D6] mr-3 mt-0.5"
+                  className="h-5 w-5 text-brand mr-3 mt-0.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -187,7 +163,7 @@ export default function Footer() {
               <li className="flex items-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-[#00E2D6] mr-3 mt-0.5"
+                  className="h-5 w-5 text-brand mr-3 mt-0.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -217,19 +193,19 @@ export default function Footer() {
           <div className="mt-4 md:mt-0 flex space-x-6">
             <Link
               href="/privacy-policy"
-              className="text-gray-400 hover:text-[#00E2D6] text-sm"
+              className="text-gray-400 hover:text-brand text-sm"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms-of-service"
-              className="text-gray-400 hover:text-[#00E2D6] text-sm"
+              className="text-gray-400 hover:text-brand text-sm"
             >
               Terms of Service
             </Link>
             <Link
               href="/cookie-policy"
-              className="text-gray-400 hover:text-[#00E2D6] text-sm"
+              className="text-gray-400 hover:text-brand text-sm"
             >
               Cookie Policy
             </Link>

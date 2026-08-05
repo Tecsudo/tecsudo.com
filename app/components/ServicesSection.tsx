@@ -3,7 +3,7 @@ import { services } from "../config/services";
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#232B32]">
+    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
         <h2 className="section-heading text-3xl sm:text-4xl font-bold">
           Our Services
@@ -16,7 +16,7 @@ export default function ServicesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {services.map((service, index) => (
             <div key={index} className="card p-6">
-              <div className="h-16 w-16 rounded-full bg-[#00E2D6]/20 flex items-center justify-center mb-6">
+              <div className="h-16 w-16 rounded-full bg-brand/20 flex items-center justify-center mb-6">
                 <span className="text-3xl">{service.icon}</span>
               </div>
               <h3 className="text-xl font-bold mb-3">{service.title}</h3>
@@ -26,7 +26,7 @@ export default function ServicesSection() {
                   <li key={itemIndex} className="flex items-start">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-[#00E2D6] mr-2 mt-0.5"
+                      className="h-5 w-5 text-brand mr-2 mt-0.5"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -44,7 +44,7 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        <div className="mt-16 bg-[#2d3741] text-white p-8 rounded-lg">
+        <div className="mt-16 bg-secondary-bg text-white p-8 rounded-lg">
           <h3 className="text-2xl font-semibold mb-4">Our Service Approach</h3>
           <p className="mb-4">
             At Tecsudo, we take a strategic approach to solution delivery,

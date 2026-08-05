@@ -9,7 +9,7 @@ export default function TermsOfService() {
     <>
       <Navbar />
       
-      <main className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-[#232B32]">
+      <main className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-white">Terms of Service</h1>
           
@@ -61,13 +61,13 @@ export default function TermsOfService() {
               If you have any questions about these Terms, please contact us at:
             </p>
             <p className="text-gray-300">
-              Email: <a href={`mailto:${contactInfo.legalEmail}`} className="text-[#00E2D6] hover:underline">{contactInfo.legalEmail}</a><br />
+              Email: <a href={`mailto:${contactInfo.legalEmail}`} className="text-brand hover:underline">{contactInfo.legalEmail}</a><br />
               Phone: {contactInfo.phone}<br />
               Address: {contactInfo.completeAddress}
             </p>
             
             <div className="mt-12 flex">
-              <Link href="/" className="text-[#00E2D6] hover:underline">← Back to Home</Link>
+              <Link href="/" className="text-brand hover:underline">← Back to Home</Link>
             </div>
           </div>
         </div>

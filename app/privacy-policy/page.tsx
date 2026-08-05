@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
     <>
       <Navbar />
       
-      <main className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-[#232B32]">
+      <main className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-white">Privacy Policy</h1>
           
@@ -84,13 +84,13 @@ export default function PrivacyPolicy() {
               If you have any questions about this privacy policy or our privacy practices, please contact us at:
             </p>
             <p className="text-gray-300">
-              Email: <a href={`mailto:${contactInfo.privacyEmail}`} className="text-[#00E2D6] hover:underline">{contactInfo.privacyEmail}</a><br />
+              Email: <a href={`mailto:${contactInfo.privacyEmail}`} className="text-brand hover:underline">{contactInfo.privacyEmail}</a><br />
               Phone: {contactInfo.phone}<br />
               Address: {contactInfo.completeAddress}
             </p>
             
             <div className="mt-12 flex">
-              <Link href="/" className="text-[#00E2D6] hover:underline">← Back to Home</Link>
+              <Link href="/" className="text-brand hover:underline">← Back to Home</Link>
             </div>
           </div>
         </div>
