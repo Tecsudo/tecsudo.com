@@ -119,7 +119,7 @@ export function initMotion() {
     }, { passive: true })
     on(document.documentElement, 'pointerleave', () => { if (cur) cur.style.rotate = '' })
     $$('.btn').forEach(b => {
-      on(b, 'pointermove', e => { const r = b.getBoundingClientRect(); b.style.translate = `${(e.clientX - r.left - r.width / 2) * .22}px ${(e.clientY - r.top - r.height / 2) * .3}px` })
+      on(b, 'pointermove', e => { const r = b.getBoundingClientRect(); b.style.translate = `${(e.clientX - r.left - r.width / 2) * .1}px ${(e.clientY - r.top - r.height / 2) * .14}px` })
       on(b, 'pointerleave', () => { b.style.translate = '' })
     })
   }
@@ -128,7 +128,7 @@ export function initMotion() {
   const par = []
   if (wide) {
     $$('.stat').forEach((el, k) => par.push([el, el.closest('.cards'), [.07, -.05, .1][k % 3], '--py']))
-    const hv = $('.hero-video'); if (hv) par.push([hv, hero, -.12, '--py'])
+    const hv = $('.hero-video'); if (hv) par.push([hv, hero, -.12, '--py', 60])
     const st = $('.stats'); if (st) par.push([st, st, .12, '--bgy'])
     $$('.ind>div').forEach((el, k) => par.push([el, el.parentElement, (k % 2 ? -1 : 1) * .03, '--py']))
   }
@@ -140,7 +140,7 @@ export function initMotion() {
     const vh = innerHeight, max = document.documentElement.scrollHeight - vh
     if (dv || first) {
       first = false
-      par.forEach(([el, ref, p, name]) => { const r = ref.getBoundingClientRect(); el.style.setProperty(name, ((r.top + r.height / 2 - vh / 2) * p).toFixed(1) + 'px') })
+      par.forEach(([el, ref, p, name, mx]) => { const r = ref.getBoundingClientRect(); let o = (r.top + r.height / 2 - vh / 2) * p; if (mx) o = clamp(o, -mx, mx); el.style.setProperty(name, o.toFixed(1) + 'px') })
       prog.style.transform = `scaleX(${max > 0 ? clamp(y / max, 0, 1).toFixed(4) : 0})`
     }
     tracks.forEach(o => { o.r += ((o.h ? .25 : 1 + clamp(Math.abs(v) * .35, 0, 6)) - o.r) * .08; if (o.a) o.a.playbackRate = o.r })
