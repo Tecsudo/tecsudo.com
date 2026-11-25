@@ -2,7 +2,7 @@ import { useState, useLayoutEffect, useEffect, useRef } from 'react'
 import { initMotion } from './motion.js'
 import { brand } from './brand.js'
 import { sendContact } from './contact.js'
-import { initAnalytics, getConsent, setAnalyticsConsent } from './analytics.js'
+import { initAnalytics, getConsent, setAnalyticsConsent, openCookieSettings } from './analytics.js'
 import { services, industries, tools, faqs } from './data.js'
 import { logos } from './logos.js'
 
@@ -335,14 +335,19 @@ function Footer() {
           <a className="btn pill" href="#contact">Book a free call</a>
         </div>
       </div>
-      <div className="wrap"><div className="fine"><span>© {new Date().getFullYear()} {brand.name}. All rights reserved.</span><span>Serving clients worldwide</span></div></div>
+      <div className="wrap"><div className="fine"><span>© {new Date().getFullYear()} {brand.name}. All rights reserved.</span><span className="fine-r"><span>Serving clients worldwide</span><button type="button" className="linkbtn" onClick={openCookieSettings}>Cookie settings</button></span></div></div>
     </footer>
   )
 }
 
 function Cookie() {
   const [open, setOpen] = useState(() => !getConsent())
-  useEffect(() => { initAnalytics() }, [])
+  useEffect(() => {
+    initAnalytics()
+    const show = () => setOpen(true)
+    addEventListener('open-cookie-settings', show)
+    return () => removeEventListener('open-cookie-settings', show)
+  }, [])
   if (!open) return null
   return (
     <div id="cookie" role="dialog" aria-label="Cookie notice">

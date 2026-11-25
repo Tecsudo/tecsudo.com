@@ -9,13 +9,13 @@ export const services = [
 ]
 
 export const industries = [
-  ['Logistics', 'logistics', '50% 50%', 'Carrier performance, load tracking and on-time service in one live view, so you can spot delays before they cost you.'],
-  ['Healthcare', 'healthcare', '48% 50%', 'Operational, capacity and patient-flow reporting that helps clinical teams plan instead of react.'],
-  ['Retail', 'retail', '68% 50%', 'Store-level sales, product mix and demand trends across every location, ready for the next expansion decision.'],
-  ['Clean Tech', 'cleantech', '62% 50%', 'Energy output, efficiency and consumption patterns turned into clear insight on where performance is slipping.'],
-  ['Finance', 'finance', '38% 50%', 'KPIs, forecasting and budget-versus-actuals you can trust, without waiting on a manual month-end pack.'],
-  ['Utilities', 'utilities', '58% 50%', 'Site-level cost, vendor and asset reporting that gives leadership real control over large-scale operational spend.'],
-  ['Accounting & Tax', 'tax', '45% 50%', 'Client, deadline and workload reporting that keeps every engagement visible and every filing on schedule.'],
+  ['Logistics', 'logistics', '50% 50%', 'See every carrier, load and delivery in a single live view. Delays show up while there is still time to fix them.'],
+  ['Healthcare', 'healthcare', '48% 50%', 'Capacity, patient flow and operations reporting that lets clinical teams plan the week ahead instead of reacting to it.'],
+  ['Retail', 'retail', '68% 50%', 'Compare sales, product mix and demand store by store, so the next opening, range or stock decision rests on evidence.'],
+  ['Clean Tech', 'cleantech', '62% 50%', 'Turn output, efficiency and consumption readings into a clear picture of which assets are underperforming, and why.'],
+  ['Finance', 'finance', '38% 50%', 'Forecasts, budget-versus-actual and core KPIs that update themselves, with no month-end spreadsheet scramble.'],
+  ['Utilities', 'utilities', '58% 50%', 'Cost, vendor and asset reporting by site, giving leadership firm control over large operational budgets.'],
+  ['Accounting & Tax', 'tax', '45% 50%', 'Track clients, deadlines and workload in one place, so every engagement stays visible and every filing lands on time.'],
 ]
 
 export const cases = [

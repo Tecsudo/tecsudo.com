@@ -55,5 +55,10 @@ export function initAnalytics() {
 
 export function setAnalyticsConsent(granted) {
   setConsent(granted ? 'granted' : 'denied')
+  // Google's documented switch: stops any further hits if GA was already loaded in this visit
+  if (GA_ID) window['ga-disable-' + GA_ID] = !granted
   if (granted) { loadGA(); trackCtas() }
 }
+
+// Lets a visitor change their mind later (footer "Cookie settings" link)
+export const openCookieSettings = () => window.dispatchEvent(new Event('open-cookie-settings'))
