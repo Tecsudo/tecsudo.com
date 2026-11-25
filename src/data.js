@@ -33,9 +33,12 @@ export const quotes = [
 export const tools = ['Snowflake', 'Databricks', 'BigQuery', 'Power BI', 'PostgreSQL', 'MySQL', 'Tableau', 'Python']
 
 export const faqs = [
-  ['How long before we see something usable?', 'Usually a first working version arrives early, so you see real numbers well before the project ends.'],
-  ['What does this cost?', 'It depends on the number of sources and the scope. We quote after a short discovery call.'],
-  ['Power BI or Tableau?', 'We recommend whichever fits your stack, budget and team skills.'],
-  ['What happens after delivery?', 'We hand over documentation and offer optional support.'],
-  ['Can you train our team?', 'Yes, we run hands-on sessions so your team can maintain the work.'],
+  ['How soon will we see something we can use?', 'A first working version usually lands within the first few weeks, so you are looking at your own numbers long before the project closes.'],
+  ['What will it cost?', 'The price depends on how many data sources you have and how much we are building. After a short discovery call we send a fixed quote.'],
+  ['Should we pick Power BI or Tableau?', 'The one that fits your existing stack, budget and team skills. If a tool is a poor fit, we will say so.'],
+  ['What if our industry is not on your list?', 'It rarely matters. The hard part is understanding your decisions and your data, and we do that in discovery.'],
+  ['What if the data contradicts what leadership believes?', 'We show the numbers and exactly how they were calculated, so the discussion is about evidence rather than opinion.'],
+  ['What happens after the project is delivered?', 'You receive documentation and a handover session. Ongoing support is available if you want it, but you are never locked in.'],
+  ['What if our business changes later?', 'Dashboards and pipelines are built so they can be changed. We can update them for you or train your team to do it.'],
+  ['Can you train our team?', 'Yes. We run hands-on sessions so your people can maintain and extend what we build.'],
 ]

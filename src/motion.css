@@ -131,10 +131,9 @@
 
 /* faq */
 .faq details{overflow:hidden;transition:background .4s,border-color .4s}
-.faq details[open]{background:linear-gradient(90deg,var(--brand-soft),transparent 75%)}
 .faq details>p{animation:none}
 .faq summary{transition:color .3s}.faq summary:hover{color:var(--brand-text)}
-.faq details[open][data-c] summary::after{background-size:12px 1.5px,1.5px 12px;background-color:transparent;border-color:var(--line)}
+.faq details[open][data-c] summary::after{background-size:14px 1.5px,1.5px 14px,auto;background-color:transparent;border-color:var(--line)}
 
 /* contact: sequential entrance + focus */
 .stg{opacity:0}
