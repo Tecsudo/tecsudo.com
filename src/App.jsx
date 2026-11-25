@@ -204,7 +204,7 @@ function Industries() {
       <div className="eyebrow">Industries</div><h2>We've worked in<br />your sector</h2>
       <div className="ind">{industries.map(([n, img, pos]) => (
         <div key={n}>
-          <img src={`/industries/${img}.jpg`} alt="" loading="lazy" style={{ objectPosition: pos }} />
+          <img src={`/industries/${img}.jpg`} alt={n} loading="lazy" style={{ objectPosition: pos }} />
           <span>{n}</span>
         </div>
       ))}</div>
@@ -301,13 +301,15 @@ function Footer({ onOpenCookieSettings }) {
         <div className="fbrand">
           <Logo />
           <p>End-to-end business intelligence for teams that want to see what's working and move faster.</p>
-          <div className="social">
-            {Object.entries(brand.social).map(([k, href]) => (
-              <a key={k} href={href} target="_blank" rel="noopener noreferrer" aria-label={k[0].toUpperCase() + k.slice(1)}>
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{SOCIAL[k]}</svg>
-              </a>
-            ))}
-          </div>
+          {Object.keys(brand.social).length > 0 ? (
+            <div className="social">
+              {Object.entries(brand.social).map(([k, href]) => (
+                <a key={k} href={href} target="_blank" rel="noopener noreferrer" aria-label={k[0].toUpperCase() + k.slice(1)}>
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{SOCIAL[k]}</svg>
+                </a>
+              ))}
+            </div>
+          ) : null}
         </div>
         <div><h4>Explore</h4><a href="/#services">Services</a><a href="/#results">Results</a><a href="/#industries">Industries</a><a href="/#tools">Toolkit</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></div>
         <div><h4>What we do</h4>{services.map(x => <a key={x.tab} href="/#services">{x.tab}</a>)}</div>
@@ -330,12 +332,17 @@ function Footer({ onOpenCookieSettings }) {
   )
 }
 
-function Cookie({ open }) {
+function Cookie({ open, onClose }) {
   useEffect(() => { initAnalytics() }, [])
   if (!open) return null
   const choose = (granted) => {
+    const gaRunning = Boolean(document.querySelector('script[src*="googletagmanager.com/gtag"]'))
     setAnalyticsConsent(granted)
-    window.location.reload()
+    if (!granted && gaRunning) {
+      window.location.reload()
+      return
+    }
+    onClose()
   }
   return (
     <div id="cookie" role="dialog" aria-label="Cookie notice">
@@ -349,9 +356,9 @@ function Cookie({ open }) {
 
 // Scroll-reveal + sticky-nav state (ported from databi.me). Runs before first paint so nothing flashes.
 const REVEAL = [
-  ['.eyebrow, section h2, .sub, .tabs, .panel, .quote, .ctl, .laptop, .research .wrap > *, .contact .wrap > *, .closing .btn', 'reveal'],
+  ['.eyebrow, section h2, .sub, .tabs, .panel, .contact .wrap > *, .closing .btn', 'reveal'],
   ['.stat', 'reveal-scale'],
-  ['.ind > div, .cases > article, .tools > div, .faq details', 'reveal'],
+  ['.ind > div, .tools > div, .faq details', 'reveal'],
 ]
 function useMotion(path) {
   useLayoutEffect(() => {
@@ -382,7 +389,7 @@ function useMotion(path) {
 }
 
 const HOME_TITLE = 'Tecsudo | Dashboards your team actually uses'
-const CLIENT_PATHS = new Set(['/', '/terms', '/privacy', '/cookies'])
+const CLIENT_PATHS = new Set(['/', ...Object.values(legalPages).map((page) => page.path)])
 
 function normalizePath(pathname) {
   if (pathname.length > 1 && pathname.endsWith('/')) return pathname.slice(0, -1)
@@ -396,7 +403,10 @@ function scrollToTop() {
 function useRoute() {
   const [path, setPath] = useState(() => normalizePath(window.location.pathname))
   const pathRef = useRef(path)
-  pathRef.current = path
+
+  useLayoutEffect(() => {
+    pathRef.current = path
+  }, [path])
 
   useLayoutEffect(() => {
     if (path !== '/') return
@@ -446,11 +456,23 @@ function useRoute() {
 }
 
 function NotFound() {
+  useEffect(() => {
+    document.title = 'Page not found | Tecsudo'
+    let meta = document.querySelector('meta[name="robots"][data-not-found]')
+    if (!meta) {
+      meta = document.createElement('meta')
+      meta.name = 'robots'
+      meta.setAttribute('data-not-found', '')
+      document.head.appendChild(meta)
+    }
+    meta.content = 'noindex'
+    return () => meta.remove()
+  }, [])
   return (
-    <main className="not-found wrap">
+    <div className="not-found wrap">
       <h1>Page not found</h1>
       <a href="/">Home</a>
-    </main>
+    </div>
   )
 }
 
@@ -465,10 +487,13 @@ export default function App() {
   const page = Object.values(legalPages).find((item) => item.path === path)
   return (
     <>
+      <a className="skip-link" href="#main">Skip to main content</a>
       <Nav />
-      {path === '/' ? <Home /> : page ? <LegalPage page={page} /> : <NotFound />}
+      <main id="main" tabIndex={-1}>
+        {path === '/' ? <Home /> : page ? <LegalPage page={page} /> : <NotFound />}
+      </main>
       <Footer onOpenCookieSettings={() => setCookieOpen(true)} />
-      <Cookie open={cookieOpen} />
+      <Cookie open={cookieOpen} onClose={() => setCookieOpen(false)} />
     </>
   )
 }
