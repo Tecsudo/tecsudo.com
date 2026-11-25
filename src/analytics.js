@@ -67,5 +67,3 @@ export function setAnalyticsConsent(granted) {
   clearGaCookies()
 }
 
-// Lets a visitor change their mind later (footer "Cookie settings" link)
-export const openCookieSettings = () => window.dispatchEvent(new Event('open-cookie-settings'))
