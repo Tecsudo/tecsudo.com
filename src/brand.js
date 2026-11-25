@@ -2,7 +2,9 @@
 export const brand = {
   name: 'Tecsudo',
   logoSrc: '/logo.png',      // put your logo file in /public and set its name here
-  email: 'hello@tecsudo.com',
-  address: ['Your street address', 'City, Country'],
+  email: 'info@tecsudo.com',
+  address: ['Schenectady, New York 12304'],
+  // Replace with the real profile URLs
+  social: { linkedin: 'https://www.linkedin.com/', facebook: 'https://www.facebook.com/', instagram: 'https://www.instagram.com/' },
 }
 // Colors live in src/styles.css under :root (--brand, --brand-2, --grad, --ink).
