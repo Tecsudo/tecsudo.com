@@ -18,7 +18,7 @@
 @keyframes wd{from{opacity:0;transform:translateY(.6em)}}
 @keyframes fadeIn{to{opacity:1}}
 .fxc{transition:var(--fxt)}.stat.hot.fxc{transition:var(--fxt)}
-.ind,.cases,.tools,.cards,.research .wrap{perspective:1000px}
+.ind,.tools,.cards{perspective:1000px}
 
 /* shared svg primitives */
 .gr{transform-box:fill-box;transform-origin:bottom;animation:grow 1.2s var(--ease-out-expo) calc(var(--k,0)*.12s + .3s) both}
@@ -119,16 +119,6 @@
 .live .pn.dash .ring{animation:ring 2.4s ease-out 3.4s infinite}
 @keyframes pnIn{to{opacity:1;transform:none}}@keyframes draw1{to{stroke-dashoffset:0}}
 @keyframes aiOn{to{fill:rgba(4,240,228,.16);stroke:var(--brand)}}@keyframes dashOn{to{fill:var(--brand);stroke:var(--brand)}}@keyframes txtOn{to{fill:#04201f}}
-.bar{transform-origin:left;transform:scaleX(0);transition:transform 1.1s var(--ease-out-expo) calc(var(--reveal-delay,0s) + .5s + var(--b,0)*.12s)}
-.laptop.is-visible .bar{transform:none}
-
-/* research */
-.research .art{position:relative;overflow:hidden}
-.research .art::before{content:"";position:absolute;inset:-30%;background:radial-gradient(circle at 70% 60%,rgba(4,240,228,.5),transparent 45%);translate:-30% 20%;transition:translate 1.2s var(--ease-out-expo)}
-.research .wrap:hover .art::before{translate:20% -10%}
-.research .wrap:hover .art{box-shadow:0 30px 60px -30px rgba(4,240,228,.55)}
-.more{display:inline-block;transition:translate .4s var(--ease-out-expo)}.research .wrap:hover .more{translate:6px 0}
-
 /* faq */
 .faq details{overflow:hidden;transition:background .4s,border-color .4s}
 .faq details>p{animation:none}
@@ -149,7 +139,7 @@ input:focus,textarea:focus{background:#25262d}
 /* cursor + progress */
 .prog{position:fixed;top:0;left:0;right:0;height:2px;background:var(--grad);transform-origin:0 0;transform:scaleX(0);z-index:80;pointer-events:none}
 
-@media(max-width:900px){.ind,.cases,.tools,.cards,.research .wrap{perspective:none}.hero::after{animation:none}}
+@media(max-width:900px){.ind,.tools,.cards{perspective:none}.hero::after{animation:none}}
 @media(max-width:760px){.hv{display:none}}
 @media(prefers-reduced-motion:reduce){
   *,::before,::after{animation-delay:0s!important}

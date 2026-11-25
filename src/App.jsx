@@ -205,7 +205,7 @@ function Industries() {
       <div className="eyebrow">Industries</div><h2>We've done this<br />in your industry</h2>
       <div className="ind-acc">{industries.map(([n, img, pos, text]) => (
         <a key={n} href="#contact" className="ind-card">
-          <img className="ind-img" src={`/industries/${img}.jpg`} alt="" loading="lazy" style={{ objectPosition: pos }} />
+          <img className="ind-img" src={`/industries/${img}.jpg`} alt={n} loading="lazy" style={{ objectPosition: pos }} />
           <span className="ind-scrim" aria-hidden="true" />
           <div className="ind-body">
             <h3>{n}</h3>
@@ -314,13 +314,15 @@ function Footer({ onOpenCookieSettings }) {
         <div className="fbrand">
           <Logo />
           <p>End-to-end business intelligence for teams that want to see what's working and move faster.</p>
-          <div className="social">
-            {Object.entries(brand.social).map(([k, href]) => (
-              <a key={k} href={href} target="_blank" rel="noopener noreferrer" aria-label={k[0].toUpperCase() + k.slice(1)}>
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{SOCIAL[k]}</svg>
-              </a>
-            ))}
-          </div>
+          {Object.keys(brand.social).length > 0 ? (
+            <div className="social">
+              {Object.entries(brand.social).map(([k, href]) => (
+                <a key={k} href={href} target="_blank" rel="noopener noreferrer" aria-label={k[0].toUpperCase() + k.slice(1)}>
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{SOCIAL[k]}</svg>
+                </a>
+              ))}
+            </div>
+          ) : null}
         </div>
         <div><h4>Explore</h4><a href="/#services">Services</a><a href="/#results">Results</a><a href="/#industries">Industries</a><a href="/#tools">Toolkit</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></div>
         <div><h4>What we do</h4>{services.map(x => <a key={x.tab} href="/#services">{x.tab}</a>)}</div>
@@ -367,7 +369,7 @@ function Cookie({ open, onClose }) {
 
 // Scroll-reveal + sticky-nav state (ported from databi.me). Runs before first paint so nothing flashes.
 const REVEAL = [
-  ['.eyebrow, section h2, .sub, .tabs, .panel, .quote, .ctl, .laptop, .research .wrap > *, .contact .wrap > *, .closing .btn', 'reveal'],
+  ['.eyebrow, section h2, .sub, .tabs, .panel, .contact .wrap > *, .closing .btn', 'reveal'],
   ['.stat', 'reveal-scale'],
   ['.ind-acc, .cases > article, .tools > div, .faq details', 'reveal'],
 ]
@@ -467,12 +469,23 @@ function useRoute() {
 }
 
 function NotFound() {
-  useEffect(() => { document.title = 'Page not found | Tecsudo' }, [])
+  useEffect(() => {
+    document.title = 'Page not found | Tecsudo'
+    let meta = document.querySelector('meta[name="robots"][data-not-found]')
+    if (!meta) {
+      meta = document.createElement('meta')
+      meta.name = 'robots'
+      meta.setAttribute('data-not-found', '')
+      document.head.appendChild(meta)
+    }
+    meta.content = 'noindex'
+    return () => meta.remove()
+  }, [])
   return (
-    <main className="not-found wrap">
+    <div className="not-found wrap">
       <h1>Page not found</h1>
       <a href="/">Home</a>
-    </main>
+    </div>
   )
 }
 
@@ -487,8 +500,11 @@ export default function App() {
   const page = Object.values(legalPages).find((item) => item.path === path)
   return (
     <>
+      <a className="skip-link" href="#main">Skip to main content</a>
       <Nav />
-      {path === '/' ? <Home /> : page ? <LegalPage page={page} /> : <NotFound />}
+      <main id="main" tabIndex={-1}>
+        {path === '/' ? <Home /> : page ? <LegalPage page={page} /> : <NotFound />}
+      </main>
       <Footer onOpenCookieSettings={() => setCookieOpen(true)} />
       <Cookie open={cookieOpen} onClose={() => setCookieOpen(false)} />
     </>

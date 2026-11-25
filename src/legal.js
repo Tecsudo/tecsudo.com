@@ -1,6 +1,6 @@
 import { brand } from './brand.js'
 
-const updated = '11 October 2026'
+const updated = '25 November 2025'
 const place = brand.address.join(', ')
 
 const who = `${brand.legalName}. We are based in ${place}. Email ${brand.email}.`
