@@ -138,7 +138,7 @@ export const legalPages = {
         ],
       },
       {
-        heading: 'Transfers outside Pakistan',
+        heading: `Transfers outside ${brand.jurisdiction}`,
         body: [
           `When you send the contact form, or when the analytics tools above run, data may be processed outside ${brand.jurisdiction} by Web3Forms, Google, and Cloudflare.`,
         ],

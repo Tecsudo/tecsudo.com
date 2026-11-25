@@ -53,7 +53,15 @@ export function initAnalytics() {
   if (getConsent() === 'granted') { loadGA(); trackCtas() }
 }
 
+function clearGaCookies() {
+  const names = document.cookie.split(';').map((cookie) => cookie.trim().split('=')[0])
+  names.filter((name) => name === '_ga' || name === '_gid' || name.startsWith('_ga_')).forEach((name) => {
+    document.cookie = `${name}=; Max-Age=0; path=/`
+  })
+}
+
 export function setAnalyticsConsent(granted) {
   setConsent(granted ? 'granted' : 'denied')
-  if (granted) { loadGA(); trackCtas() }
+  if (granted) { loadGA(); trackCtas(); return }
+  clearGaCookies()
 }

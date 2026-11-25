@@ -330,12 +330,17 @@ function Footer({ onOpenCookieSettings }) {
   )
 }
 
-function Cookie({ open }) {
+function Cookie({ open, onClose }) {
   useEffect(() => { initAnalytics() }, [])
   if (!open) return null
   const choose = (granted) => {
+    const gaRunning = Boolean(document.querySelector('script[src*="googletagmanager.com/gtag"]'))
     setAnalyticsConsent(granted)
-    window.location.reload()
+    if (!granted && gaRunning) {
+      window.location.reload()
+      return
+    }
+    onClose()
   }
   return (
     <div id="cookie" role="dialog" aria-label="Cookie notice">
@@ -382,7 +387,7 @@ function useMotion(path) {
 }
 
 const HOME_TITLE = 'Tecsudo | Dashboards your team actually uses'
-const CLIENT_PATHS = new Set(['/', '/terms', '/privacy', '/cookies'])
+const CLIENT_PATHS = new Set(['/', ...Object.values(legalPages).map((page) => page.path)])
 
 function normalizePath(pathname) {
   if (pathname.length > 1 && pathname.endsWith('/')) return pathname.slice(0, -1)
@@ -396,7 +401,10 @@ function scrollToTop() {
 function useRoute() {
   const [path, setPath] = useState(() => normalizePath(window.location.pathname))
   const pathRef = useRef(path)
-  pathRef.current = path
+
+  useLayoutEffect(() => {
+    pathRef.current = path
+  }, [path])
 
   useLayoutEffect(() => {
     if (path !== '/') return
@@ -446,6 +454,7 @@ function useRoute() {
 }
 
 function NotFound() {
+  useEffect(() => { document.title = 'Page not found | Tecsudo' }, [])
   return (
     <main className="not-found wrap">
       <h1>Page not found</h1>
@@ -468,7 +477,7 @@ export default function App() {
       <Nav />
       {path === '/' ? <Home /> : page ? <LegalPage page={page} /> : <NotFound />}
       <Footer onOpenCookieSettings={() => setCookieOpen(true)} />
-      <Cookie open={cookieOpen} />
+      <Cookie open={cookieOpen} onClose={() => setCookieOpen(false)} />
     </>
   )
 }
