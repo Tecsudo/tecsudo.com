@@ -14,18 +14,6 @@ export const industries = [
   ['Accounting & Tax', 'tax', '45% 50%'],
 ]
 
-export const cases = [
-  ['Analytics suite for a global logistics company', '#3a2a6b'],
-  ['Real-time reporting for a national retail chain', '#1d3a7a'],
-  ['Automated CRM reporting platform', '#2a1f5a'],
-]
-
-export const quotes = [
-  ['Alex Morgan', 'Director of IT, Northlake', 'The dashboards helped us spot issues much faster and gave leadership one place to look.'],
-  ['Sam Rivera', 'COO, Brightwell', 'They understood how our operation runs, not just the data behind it.'],
-  ['Priya Shah', 'Head of Finance, Kestrel', 'We went from monthly spreadsheet rebuilds to reports that simply update.'],
-]
-
 export const tools = ['Snowflake', 'Databricks', 'BigQuery', 'Power BI', 'PostgreSQL', 'MySQL', 'Tableau', 'Python']
 
 export const faqs = [
