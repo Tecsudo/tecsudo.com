@@ -9,9 +9,13 @@ export const services = [
 ]
 
 export const industries = [
-  ['Logistics', 'logistics', '50% 50%'], ['Healthcare', 'healthcare', '48% 50%'], ['Retail', 'retail', '68% 50%'],
-  ['Clean Tech', 'cleantech', '62% 50%'], ['Finance', 'finance', '38% 50%'], ['Utilities', 'utilities', '58% 50%'],
-  ['Accounting & Tax', 'tax', '45% 50%'],
+  ['Logistics', 'logistics', '50% 50%', 'Carrier performance, load tracking and on-time service in one live view, so you can spot delays before they cost you.'],
+  ['Healthcare', 'healthcare', '48% 50%', 'Operational, capacity and patient-flow reporting that helps clinical teams plan instead of react.'],
+  ['Retail', 'retail', '68% 50%', 'Store-level sales, product mix and demand trends across every location, ready for the next expansion decision.'],
+  ['Clean Tech', 'cleantech', '62% 50%', 'Energy output, efficiency and consumption patterns turned into clear insight on where performance is slipping.'],
+  ['Finance', 'finance', '38% 50%', 'KPIs, forecasting and budget-versus-actuals you can trust, without waiting on a manual month-end pack.'],
+  ['Utilities', 'utilities', '58% 50%', 'Site-level cost, vendor and asset reporting that gives leadership real control over large-scale operational spend.'],
+  ['Accounting & Tax', 'tax', '45% 50%', 'Client, deadline and workload reporting that keeps every engagement visible and every filing on schedule.'],
 ]
 
 export const cases = [

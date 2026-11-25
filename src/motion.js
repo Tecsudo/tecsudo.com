@@ -2,7 +2,7 @@
 const $ = (s, r = document) => r.querySelector(s)
 const $$ = (s, r = document) => [...r.querySelectorAll(s)]
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v))
-const CARDS = [['.ind>div', 7], ['.cases>article', 4], ['.tools>div', 9], ['.stat', 8], ['.tabs button', 0], ['.research .art', 5]]
+const CARDS = [['.cases>article', 4], ['.tools>div', 9], ['.stat', 8], ['.tabs button', 0], ['.research .art', 5]]
 const FX = CARDS.map(c => c[0]).join(',')
 
 export function initMotion() {
@@ -130,7 +130,6 @@ export function initMotion() {
     $$('.stat').forEach((el, k) => par.push([el, el.closest('.cards'), [.07, -.05, .1][k % 3], '--py']))
     const hv = $('.hero-video'); if (hv) par.push([hv, hero, -.12, '--py', 60])
     const st = $('.stats'); if (st) par.push([st, st, .12, '--bgy'])
-    $$('.ind>div').forEach((el, k) => par.push([el, el.parentElement, (k % 2 ? -1 : 1) * .03, '--py']))
   }
   const tracks = $$('.track').map(t => { const o = { t, a: t.getAnimations?.()[0], h: false, r: 1 }; on(t, 'pointerenter', () => o.h = true); on(t, 'pointerleave', () => o.h = false); return o })
   const skewEls = $$('.logos,.closing')

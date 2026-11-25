@@ -4,6 +4,7 @@ import { brand } from './brand.js'
 import { sendContact } from './contact.js'
 import { initAnalytics, getConsent, setAnalyticsConsent } from './analytics.js'
 import { services, industries, tools, faqs } from './data.js'
+import { logos } from './logos.js'
 
 function Logo() {
   const [failed, setFailed] = useState(false)
@@ -199,12 +200,19 @@ function Stats() {
 function Industries() {
   return (
     <section id="industries" className="dark flush"><div className="wrap">
-      <div className="eyebrow">Industries</div><h2>We've worked in<br />your sector</h2>
-      <div className="ind">{industries.map(([n, img, pos]) => (
-        <div key={n}>
-          <img src={`/industries/${img}.jpg`} alt="" loading="lazy" style={{ objectPosition: pos }} />
-          <span>{n}</span>
-        </div>
+      <div className="eyebrow">Industries</div><h2>We've done this<br />in your industry</h2>
+      <div className="ind-acc">{industries.map(([n, img, pos, text]) => (
+        <a key={n} href="#contact" className="ind-card">
+          <img className="ind-img" src={`/industries/${img}.jpg`} alt="" loading="lazy" style={{ objectPosition: pos }} />
+          <span className="ind-scrim" aria-hidden="true" />
+          <div className="ind-body">
+            <h3>{n}</h3>
+            <div className="ind-detail"><div className="ind-detail-inner">
+              <p>{text}</p>
+              <span className="ind-more">Talk to us <i>→</i></span>
+            </div></div>
+          </div>
+        </a>
       ))}</div>
     </div></section>
   )
@@ -214,7 +222,12 @@ function Toolkit() {
   return (
     <section id="tools"><div className="wrap">
       <div className="eyebrow">Tools &amp; platforms</div><h2>Our analytics toolkit</h2>
-      <div className="tools">{tools.map(t => <div key={t}>{t}<span>{t.toUpperCase()}</span></div>)}</div>
+      <div className="tools">{tools.map(t => (
+        <div key={t}>
+          <svg className="tl" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label={t}><path d={logos[t]} /></svg>
+          <span>{t.toUpperCase()}</span>
+        </div>
+      ))}</div>
     </div></section>
   )
 }
@@ -345,7 +358,7 @@ function Cookie() {
 const REVEAL = [
   ['.eyebrow, section h2, .sub, .tabs, .panel, .quote, .ctl, .laptop, .research .wrap > *, .contact .wrap > *, .closing .btn', 'reveal'],
   ['.stat', 'reveal-scale'],
-  ['.ind > div, .cases > article, .tools > div, .faq details', 'reveal'],
+  ['.ind-acc, .cases > article, .tools > div, .faq details', 'reveal'],
 ]
 function useMotion() {
   useLayoutEffect(() => {
