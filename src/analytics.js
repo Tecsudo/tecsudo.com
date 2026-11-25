@@ -53,11 +53,18 @@ export function initAnalytics() {
   if (getConsent() === 'granted') { loadGA(); trackCtas() }
 }
 
+function clearGaCookies() {
+  const names = document.cookie.split(';').map((cookie) => cookie.trim().split('=')[0])
+  names.filter((name) => name === '_ga' || name === '_gid' || name.startsWith('_ga_')).forEach((name) => {
+    document.cookie = `${name}=; Max-Age=0; path=/`
+  })
+}
+
 export function setAnalyticsConsent(granted) {
   setConsent(granted ? 'granted' : 'denied')
-  // Google's documented switch: stops any further hits if GA was already loaded in this visit
   if (GA_ID) window['ga-disable-' + GA_ID] = !granted
-  if (granted) { loadGA(); trackCtas() }
+  if (granted) { loadGA(); trackCtas(); return }
+  clearGaCookies()
 }
 
 // Lets a visitor change their mind later (footer "Cookie settings" link)
