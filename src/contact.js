@@ -1,8 +1,5 @@
-// ─── Contact form backend ──────────────────────────────────────────
-// Uses Web3Forms (free): it emails each submission to the address you
-// registered. Get a key at https://web3forms.com and paste it below.
-export const WEB3FORMS_KEY = '6555804c-933e-405b-97a1-d0559d3c6edf'   // e.g. 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-// ───────────────────────────────────────────────────────────────────
+// Contact form posts to Web3Forms. Set VITE_WEB3FORMS_KEY in .env.
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY
 
 export async function sendContact({ name, email, company, message, botcheck }) {
   if (!WEB3FORMS_KEY) throw new Error('not-configured')

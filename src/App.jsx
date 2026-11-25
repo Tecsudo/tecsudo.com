@@ -5,6 +5,8 @@ import { sendContact } from './contact.js'
 import { initAnalytics, getConsent, setAnalyticsConsent, openCookieSettings } from './analytics.js'
 import { services, industries, tools, faqs } from './data.js'
 import { logos } from './logos.js'
+import { legalPages } from './legal.js'
+import LegalPage from './LegalPage.jsx'
 
 function Logo() {
   const [failed, setFailed] = useState(false)
@@ -17,11 +19,11 @@ function Nav() {
   const close = () => setOpen(false)
   return (
     <nav data-open={open || undefined}><div className="wrap">
-      <a href="#top" className="nav-logo" onClick={close}><Logo /></a>
+      <a href="/" className="nav-logo" onClick={close}><Logo /></a>
       <div className="links" onClick={close}>
-        <a href="#services">Services</a><a href="#results">Results</a><a href="#industries">Industries</a><a href="#tools">Toolkit</a><a href="#faq">FAQ</a>
+        <a href="/#services">Services</a><a href="/#results">Results</a><a href="/#industries">Industries</a><a href="/#tools">Toolkit</a><a href="/#faq">FAQ</a>
       </div>
-      <a className="btn pill" href="#contact" onClick={close}>Book a free call</a>
+      <a className="btn pill" href="/#contact" onClick={close}>Book a free call</a>
       <button className="burger" type="button" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}><i /><i /></button>
     </div></nav>
   )
@@ -46,7 +48,7 @@ function Hero() {
       <div>
         <span className="tag animate-rise" style={{ '--d': '.1s' }}>VISUALIZE. ANALYZE. DECIDE.</span>
         <h1><span className="ln"><span style={{ '--d': '.2s', '--k': 1 }}>Dashboards</span></span><span className="ln"><span style={{ '--d': '.32s', '--k': -.6 }}>your team</span></span><span className="ln"><span className="grad" style={{ '--d': '.44s', '--k': 1.3 }}>actually uses.</span></span></h1>
-        <div className="cta"><a className="btn animate-rise" style={{ '--d': '.75s' }} href="#contact">Book a free strategy call</a><a className="btn ghost animate-rise" style={{ '--d': '.88s' }} href="#services">Explore our services →</a></div>
+        <div className="cta"><a className="btn animate-rise" style={{ '--d': '.75s' }} href="/#contact">Book a free strategy call</a><a className="btn ghost animate-rise" style={{ '--d': '.88s' }} href="/#services">Explore our services →</a></div>
       </div>
       <p className="animate-rise" style={{ '--d': '.65s' }}>Business intelligence built around how your leaders make decisions, so the numbers are clear, current, and trusted.</p>
     </div></header>
@@ -203,7 +205,7 @@ function Industries() {
       <div className="eyebrow">Industries</div><h2>We've done this<br />in your industry</h2>
       <div className="ind-acc">{industries.map(([n, img, pos, text]) => (
         <a key={n} href="#contact" className="ind-card">
-          <img className="ind-img" src={`/industries/${img}.jpg`} alt="" loading="lazy" style={{ objectPosition: pos }} />
+          <img className="ind-img" src={`/industries/${img}.jpg`} alt={n} loading="lazy" style={{ objectPosition: pos }} />
           <span className="ind-scrim" aria-hidden="true" />
           <div className="ind-body">
             <h3>{n}</h3>
@@ -273,14 +275,14 @@ function Contact() {
         <h3>Tell us about your project</h3>
         <input type="checkbox" name="botcheck" tabIndex="-1" autoComplete="off" style={{ display: 'none' }} />
         <div className="row2">
-          <div><label htmlFor="n">Full name</label><input id="n" name="name" required autoComplete="name" placeholder="Jane Doe" /></div>
-          <div><label htmlFor="e">Work email</label><input id="e" name="email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
+          <div><label htmlFor="n">Full name</label><input id="n" name="name" required maxLength={120} autoComplete="name" placeholder="Jane Doe" /></div>
+          <div><label htmlFor="e">Work email</label><input id="e" name="email" type="email" required maxLength={200} autoComplete="email" placeholder="you@company.com" /></div>
         </div>
         <div className="row2">
-          <div><label htmlFor="c">Company <span className="opt">(optional)</span></label><input id="c" name="company" autoComplete="organization" placeholder="Company name" /></div>
+          <div><label htmlFor="c">Company <span className="opt">(optional)</span></label><input id="c" name="company" maxLength={160} autoComplete="organization" placeholder="Company name" /></div>
           <div><label htmlFor="s">I'm interested in</label><select id="s" name="service">{[...services.map(x => x.tab), 'Not sure yet'].map(x => <option key={x}>{x}</option>)}</select></div>
         </div>
-        <div><label htmlFor="m">What do you need help with?</label><textarea id="m" name="message" required rows="4" placeholder="Tell us about your data sources and what you want to achieve" /></div>
+        <div><label htmlFor="m">What do you need help with?</label><textarea id="m" name="message" required maxLength={4000} rows="4" placeholder="Tell us about your data sources and what you want to achieve" /></div>
         <button className="btn submit" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button>
         <p className="consent">By submitting you agree to be contacted about your enquiry. We never share your details.</p>
         {status === 'sent' && <div className="sent" role="status">Thanks, your message has been sent. We'll reply within 24 hours.</div>}
@@ -295,7 +297,7 @@ function Closing() {
   return (
     <div className="closing">
       <div className="track">{[0, 1, 2, 3].map(k => <span key={k}>{line} •</span>)}</div>
-      <a className="btn" href="#contact">Book a free strategy call →</a>
+      <a className="btn" href="/#contact">Book a free strategy call →</a>
     </div>
   )
 }
@@ -305,23 +307,26 @@ const SOCIAL = {
   facebook: <path d="M14 8V6.500c0-.8.2-1.200 1.300-1.200H17V2h-2.600C11.400 2 10 3.800 10 6.200V8H7.500v3.300H10V22h4V11.300h2.600L17 8z" />,
   instagram: <><rect x="3.500" y="3.500" width="17" height="17" rx="5" fill="none" stroke="currentColor" strokeWidth="1.800" /><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="1.800" /><circle cx="17.200" cy="6.800" r="1.100" /></>,
 }
-function Footer() {
+function Footer({ onOpenCookieSettings }) {
   return (
     <footer>
       <div className="wrap fgrid">
         <div className="fbrand">
           <Logo />
           <p>End-to-end business intelligence for teams that want to see what's working and move faster.</p>
-          <div className="social">
-            {Object.entries(brand.social).map(([k, href]) => (
-              <a key={k} href={href} target="_blank" rel="noopener noreferrer" aria-label={k[0].toUpperCase() + k.slice(1)}>
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{SOCIAL[k]}</svg>
-              </a>
-            ))}
-          </div>
+          {Object.keys(brand.social).length > 0 ? (
+            <div className="social">
+              {Object.entries(brand.social).map(([k, href]) => (
+                <a key={k} href={href} target="_blank" rel="noopener noreferrer" aria-label={k[0].toUpperCase() + k.slice(1)}>
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{SOCIAL[k]}</svg>
+                </a>
+              ))}
+            </div>
+          ) : null}
         </div>
-        <div><h4>Explore</h4><a href="#services">Services</a><a href="#results">Results</a><a href="#industries">Industries</a><a href="#tools">Toolkit</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
-        <div><h4>What we do</h4>{services.map(x => <a key={x.tab} href="#services">{x.tab}</a>)}</div>
+        <div><h4>Explore</h4><a href="/#services">Services</a><a href="/#results">Results</a><a href="/#industries">Industries</a><a href="/#tools">Toolkit</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></div>
+        <div><h4>What we do</h4>{services.map(x => <a key={x.tab} href="/#services">{x.tab}</a>)}</div>
+        <div><h4>Legal</h4><a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a><button type="button" className="cookie-settings" onClick={onOpenCookieSettings}>Cookie settings</button></div>
         <div>
           <h4>Get in touch</h4>
           <address>
@@ -332,7 +337,7 @@ function Footer() {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.800" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></svg>
             <span>{brand.email}</span>
           </a>
-          <a className="btn pill" href="#contact">Book a free call</a>
+          <a className="btn pill" href="/#contact">Book a free call</a>
         </div>
       </div>
       <div className="wrap"><div className="fine"><span>© {new Date().getFullYear()} {brand.name}. All rights reserved.</span><span className="fine-r"><span>Serving clients worldwide</span><button type="button" className="linkbtn" onClick={openCookieSettings}>Cookie settings</button></span></div></div>
@@ -340,20 +345,23 @@ function Footer() {
   )
 }
 
-function Cookie() {
-  const [open, setOpen] = useState(() => !getConsent())
-  useEffect(() => {
-    initAnalytics()
-    const show = () => setOpen(true)
-    addEventListener('open-cookie-settings', show)
-    return () => removeEventListener('open-cookie-settings', show)
-  }, [])
+function Cookie({ open, onClose }) {
+  useEffect(() => { initAnalytics() }, [])
   if (!open) return null
+  const choose = (granted) => {
+    const gaRunning = Boolean(document.querySelector('script[src*="googletagmanager.com/gtag"]'))
+    setAnalyticsConsent(granted)
+    if (!granted && gaRunning) {
+      window.location.reload()
+      return
+    }
+    onClose()
+  }
   return (
     <div id="cookie" role="dialog" aria-label="Cookie notice">
-      <span>We use cookies to analyse traffic and improve your experience. Analytics stay off until you accept.</span>
-      <button className="btn ghost" onClick={() => { setAnalyticsConsent(false); setOpen(false) }}>Decline</button>
-      <button className="btn" onClick={() => { setAnalyticsConsent(true); setOpen(false) }}>Accept</button>
+      <span>Cookieless analytics runs on every visit. Google Analytics cookies stay off until Accept. <a href="/cookies">Cookie Policy</a></span>
+      <button className="btn ghost" onClick={() => choose(false)}>Decline</button>
+      <button className="btn" onClick={() => choose(true)}>Accept</button>
     </div>
   )
 }
@@ -361,11 +369,11 @@ function Cookie() {
 
 // Scroll-reveal + sticky-nav state (ported from databi.me). Runs before first paint so nothing flashes.
 const REVEAL = [
-  ['.eyebrow, section h2, .sub, .tabs, .panel, .quote, .ctl, .laptop, .research .wrap > *, .contact .wrap > *, .closing .btn', 'reveal'],
+  ['.eyebrow, section h2, .sub, .tabs, .panel, .contact .wrap > *, .closing .btn', 'reveal'],
   ['.stat', 'reveal-scale'],
   ['.ind-acc, .cases > article, .tools > div, .faq details', 'reveal'],
 ]
-function useMotion() {
+function useMotion(path) {
   useLayoutEffect(() => {
     const nav = document.querySelector('nav')
     const onScroll = () => nav?.classList.toggle('nav-scrolled', window.scrollY > 8)
@@ -374,7 +382,7 @@ function useMotion() {
 
     const els = []
     REVEAL.forEach(([sel, cls]) => document.querySelectorAll(sel).forEach(el => {
-      if (el.closest('.hero')) return
+      if (el.closest('.hero') || el.closest('.legal')) return
       el.classList.add(cls)
       // stagger siblings that share a parent grid
       const sibs = [...el.parentElement.children].filter(c => c.classList.contains(cls))
@@ -390,10 +398,115 @@ function useMotion() {
     }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' })
     els.forEach(el => io.observe(el))
     return () => { io.disconnect(); removeEventListener('scroll', onScroll); stop() }
+  }, [path])
+}
+
+const HOME_TITLE = 'Tecsudo | Dashboards your team actually uses'
+const CLIENT_PATHS = new Set(['/', ...Object.values(legalPages).map((page) => page.path)])
+
+function normalizePath(pathname) {
+  if (pathname.length > 1 && pathname.endsWith('/')) return pathname.slice(0, -1)
+  return pathname
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+}
+
+function useRoute() {
+  const [path, setPath] = useState(() => normalizePath(window.location.pathname))
+  const pathRef = useRef(path)
+
+  useLayoutEffect(() => {
+    pathRef.current = path
+  }, [path])
+
+  useLayoutEffect(() => {
+    if (path !== '/') return
+    const id = window.location.hash.slice(1)
+    if (!id) return
+    document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: 'instant' })
+  }, [path])
+
+  useEffect(() => {
+    const onPop = () => {
+      const next = normalizePath(window.location.pathname)
+      const pathChanged = next !== pathRef.current
+      setPath(next)
+      if (!pathChanged || window.location.hash) return
+      setTimeout(scrollToTop, 0)
+    }
+    const onClick = (event) => {
+      if (event.defaultPrevented || event.button !== 0) return
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      const anchor = event.target instanceof Element ? event.target.closest('a[href]') : null
+      if (!anchor || anchor.target === '_blank' || anchor.hasAttribute('download')) return
+      let url
+      try { url = new URL(anchor.href) } catch { return }
+      if (url.origin !== window.location.origin || url.hash) return
+      const next = normalizePath(url.pathname)
+      if (!CLIENT_PATHS.has(next)) return
+      event.preventDefault()
+      const destination = next + url.search + url.hash
+      const current = window.location.pathname + window.location.search + window.location.hash
+      if (current !== destination) history.pushState(null, '', destination)
+      setPath(next)
+      scrollToTop()
+    }
+    addEventListener('popstate', onPop)
+    document.addEventListener('click', onClick)
+    return () => {
+      removeEventListener('popstate', onPop)
+      document.removeEventListener('click', onClick)
+    }
   }, [])
+
+  useEffect(() => {
+    if (path === '/') document.title = HOME_TITLE
+  }, [path])
+
+  return path
+}
+
+function NotFound() {
+  useEffect(() => {
+    document.title = 'Page not found | Tecsudo'
+    let meta = document.querySelector('meta[name="robots"][data-not-found]')
+    if (!meta) {
+      meta = document.createElement('meta')
+      meta.name = 'robots'
+      meta.setAttribute('data-not-found', '')
+      document.head.appendChild(meta)
+    }
+    meta.content = 'noindex'
+    return () => meta.remove()
+  }, [])
+  return (
+    <div className="not-found wrap">
+      <h1>Page not found</h1>
+      <a href="/">Home</a>
+    </div>
+  )
+}
+
+function Home() {
+  return (<><Hero /><Services /><Stats /><Industries /><Toolkit /><Faq /><Contact /><Closing /></>)
 }
 
 export default function App() {
-  useMotion()
-  return (<><Nav /><Hero /><Services /><Stats /><Industries /><Toolkit /><Faq /><Contact /><Closing /><Footer /><Cookie /></>)
+  const path = useRoute()
+  useMotion(path)
+  const [cookieOpen, setCookieOpen] = useState(() => !getConsent())
+  const page = Object.values(legalPages).find((item) => item.path === path)
+  return (
+    <>
+      <a className="skip-link" href="#main">Skip to main content</a>
+      <Nav />
+      <main id="main" tabIndex={-1}>
+        {path === '/' ? <Home /> : page ? <LegalPage page={page} /> : <NotFound />}
+      </main>
+      <Footer onOpenCookieSettings={() => setCookieOpen(true)} />
+      <Cookie open={cookieOpen} onClose={() => setCookieOpen(false)} />
+    </>
+  )
 }
