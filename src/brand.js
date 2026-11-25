@@ -5,8 +5,8 @@ export const brand = {
   logoSrc: '/logo.png',
   email: 'info@tecsudo.com',
   address: ['Schenectady, New York 12304'],
-  // Replace with the real profile URLs
-  social: { linkedin: 'https://www.linkedin.com/', facebook: 'https://www.facebook.com/', instagram: 'https://www.instagram.com/' },
+  // Add profile URLs when ready, e.g. linkedin: 'https://www.linkedin.com/company/...'
+  social: {},
   jurisdiction: 'Pakistan',
   venue: 'the courts at Islamabad',
 }

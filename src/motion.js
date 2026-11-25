@@ -2,7 +2,7 @@
 const $ = (s, r = document) => r.querySelector(s)
 const $$ = (s, r = document) => [...r.querySelectorAll(s)]
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v))
-const CARDS = [['.ind>div', 7], ['.cases>article', 4], ['.tools>div', 9], ['.stat', 8], ['.tabs button', 0], ['.research .art', 5]]
+const CARDS = [['.ind>div', 7], ['.tools>div', 9], ['.stat', 8], ['.tabs button', 0]]
 const FX = CARDS.map(c => c[0]).join(',')
 
 export function initMotion() {
@@ -12,14 +12,12 @@ export function initMotion() {
   const off = []
   const on = (t, e, f, o) => { t.addEventListener(e, f, o); off.push(() => t.removeEventListener(e, f, o)) }
 
-  // sequential children (contact + research)
-  $$('.contact .wrap>div>*, .contact form>*, .contact li, .research .wrap>div>*').forEach(el => {
+  // sequential children (contact section)
+  $$('.contact .wrap>div>*, .contact form>*, .contact li').forEach(el => {
     el.classList.add('stg')
     el.style.setProperty('--c', [...el.parentElement.children].indexOf(el) + (el.tagName === 'LI' ? 4 : 0))
   })
   CARDS.forEach(([s, d]) => $$(s).forEach(el => { el.classList.add('fxc'); el._deg = d }))
-  const lap = $('.laptop'); if (lap) lap.style.setProperty('--reveal-delay', '1400ms') // wait for the pipeline
-
   if (reduce) return () => off.forEach(f => f())
 
   // ---- hero: particle network + mouse depth
